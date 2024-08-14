@@ -2,11 +2,13 @@
 /*
 Plugin Name: GA4 Bot Tracker
 Description: Plugin para rastrear bots de Google utilizando la API Measurement de GA4.
-Version: 1.0
+Version: 1.0.1
+Tested up to: 6.1
 Author: Jose Ángel Martínez Díaz
+Author URI: https://www.linkedin.com/in/joseangelmartinezdiaz/
 */
 
-// Este fragmento registra el menú de configuración en el lateral
+// Esta parte registra el menú de configuración en el lateral
 add_action('admin_menu', 'ga4_bot_tracker_menu');
 
 function ga4_bot_tracker_menu() {
@@ -32,6 +34,10 @@ function ga4_bot_tracker_settings_page() {
             submit_button();
             ?>
         </form>
+		<hr>
+        <h3>Disclaimer</h3><p>Este plugin está en una fase muy temprana de su desarrollo, por lo que es muy posible que falle o registre errores. Los datos de Googlebot no son 100% exactos debido a diferentes casuísticas. Si tienes un sitio con pocas visitas, posiblemente tardes en ver datos en la propiedad.</p>
+		<p>No atiendo peticiones sobre el plugin, puedes avisar de errores o proponer mejoras en el repositorio oficial de <strong><a href="https://github.com/Oshvam/ga4-bot-tracker/tree/main"target="_blank">GitHub</a></strong>.</p>
+		<p>Si te gusta mi trabajo, por favor, considera seguirme en <strong><a href="https://www.linkedin.com/in/joseangelmartinezdiaz/" target="_blank">LinkedIn</a><strong> o </strong><a href="https://x.com/elotroseo" target="_blank">X (Antes Twitter)</a><strong>.
     </div>
     <?php
 }
@@ -44,7 +50,7 @@ function ga4_bot_tracker_settings_init() {
 
     add_settings_section(
         'ga4_bot_tracker_section',
-        'Configuración de GA4',
+        'Configuración del plugin',
         'ga4_bot_tracker_section_callback',
         'ga4-bot-tracker'
     );
@@ -74,8 +80,8 @@ function ga4_bot_tracker_settings_init() {
     );
 }
 
+    echo '<img src="https://developers.google.com/static/analytics/images/terms/lockup_ic_Analytics_horiz_272px_clr.png?hl=es-419" width="150px"><hr><p>Para usar este plugin necesitarás las claves de la API Measurement Protocol de GA4. Antes de continuar, necesitarás crear una propiedad independiente, <strong>bajo ningún concepto uses tu propiedad de GA4 principal</strong>, estos datos se guardan en una propiedad por separado. Si no sabes hacerlo, puedes crear una propiedad siguiendo las instrucciones de <strong><a href="https://support.google.com/analytics/answer/9744165?hl=es#upgrade&zippy=%2Csecciones-de-este-art%C3%ADculo" target=_blank">este enlace</a></strong>.</p><p>Además, tendrás que crear las claves API de Measurement Protocol, puedes aprender a obtenerlas desde la documentación oficial de Google Analitycs en <strong><a href="https://developers.google.com/analytics/devguides/collection/protocol/ga4/reference?hl=es&client_type=firebase" target="_blank">este enlace</a></strong>. Si aún así tienes  dudas, pulsa <strong><a href="https://github.com/Oshvam/ga4-bot-tracker/blob/main/img/measurement_id_tutorial.png" target="_blank">en este enlace</a></strong> para ver una imágen de donde debes sacar las claves gratuitas.</p><p>El plugin filtra por User Agent y además, para evitar falsos positivos, también filtra por las IP oficiales de Google que puedes consultar en <strong><a href="https://developers.google.com/search/apis/ipranges/googlebot.json" target="_blank">este enlace</a></strong>.</p>';
 function ga4_bot_tracker_section_callback() {
-    echo 'Para usar este plugin necesitarás las claves de la API Measurement Protocol de GA4. Par <img src="img/measurement_id_tutorial.png">';
 }
 
 function ga4_bot_tracker_measurement_id_render() {
